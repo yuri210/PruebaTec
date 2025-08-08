@@ -1,69 +1,49 @@
-# Prueba Técnica Full Stack - Laravel 12 + React
+<?php
 
-Sistema de gestión de ubicaciones con API REST.
+namespace App\Services;
 
-## Requisitos
+use App\Models\Location;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-- PHP 8.4+
-- Node.js 18+
-- Docker (opcional)
+class LocationService
+{
+    public function getPaginatedLocations(
+        int $page = 1,
+        int $perPage = 15,
+        ?string $nameFilter = null,
+        ?string $codeFilter = null
+    ): LengthAwarePaginator {
+        $query = Location::query();
 
-## Configuración
+        if ($nameFilter) {
+            $query->filterByName($nameFilter);
+        }
 
-### Backend
-```bash
-cd backend
-composer install
-cp .env.example .env
-php artisan key:generate
-touch database/database.sqlite
-php artisan migrate --seed
-php artisan serve
-```
+        if ($codeFilter) {
+            $query->filterByCode($codeFilter);
+        }
 
-### Frontend
-```bash
-cd frontend
-npm install
-cp .env.example .env
-npm run dev
-```
+        return $query->paginate($perPage, ['*'], 'page', $page);
+    }
 
-### Con Docker
-```bash
-docker-compose up -d
-```
+    public function createLocation(array $data): Location
+    {
+        return Location::create($data);
+    }
 
-## API
+    public function findLocation(int $id): ?Location
+    {
+        return Location::find($id);
+    }
 
-Base URL: `http://localhost:8000/api/v1`
+    public function updateLocation(Location $location, array $data): Location
+    {
+        $location->update($data);
+        return $location->fresh();
+    }
 
-Header requerido: `X-API-Key: tu-api-key`
-
-### Endpoints
-
-- `GET /locations` - Lista paginada con filtros (name, code)
-- `POST /locations` - Crear ubicación
-
-## Tests
-
-```bash
-# Backend
-cd backend && composer test
-
-# Frontend  
-cd frontend && npm test
-```
-
-## Configuración API Key
-
-Backend `.env`:
-```
-API_KEY=mi-clave-secreta
-```
-
-Frontend `.env`:
-```
-VITE_API_KEY=mi-clave-secreta
-VITE_API_BASE_URL=http://localhost:8000
-```
+    public function deleteLocation(Location $location): bool
+    {
+        return $location->delete();
+    }
+}

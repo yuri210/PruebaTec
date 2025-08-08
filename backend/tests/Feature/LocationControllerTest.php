@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Models\Location;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 
 class LocationControllerTest extends TestCase
 {
@@ -19,7 +19,7 @@ class LocationControllerTest extends TestCase
         config(['api.key' => $this->apiKey]);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function puede_obtener_lista_de_ubicaciones()
     {
         // Crear algunas ubicaciones de prueba
@@ -39,7 +39,7 @@ class LocationControllerTest extends TestCase
                 ]);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function puede_filtrar_ubicaciones_por_nombre()
     {
         Location::factory()->create(['name' => 'Oficina Madrid', 'code' => 'MAD001']);
@@ -61,7 +61,7 @@ class LocationControllerTest extends TestCase
         }
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function puede_crear_nueva_ubicacion()
     {
         $locationData = [
@@ -88,7 +88,7 @@ class LocationControllerTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function valida_datos_requeridos_al_crear_ubicacion()
     {
         $response = $this->withHeaders([
@@ -106,7 +106,7 @@ class LocationControllerTest extends TestCase
                 ]);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function rechaza_codigo_duplicado()
     {
         Location::factory()->create(['code' => 'DUP001']);
@@ -126,7 +126,7 @@ class LocationControllerTest extends TestCase
         $this->assertStringContainsString('already exists', $errors['code'][0]);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function aplica_paginacion_correctamente()
     {
         Location::factory()->count(25)->create();
