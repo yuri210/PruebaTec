@@ -1,0 +1,156 @@
+# =======================
+# ARCHIVOS PESADOS Y TEMPORALES
+# =======================
+
+# Node.js dependencies (MUY PESADO)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# PHP dependencies (MUY PESADO)
+vendor/
+composer.lock
+
+# =======================
+# ARCHIVOS DE CONFIGURACIÓN SENSIBLES
+# =======================
+
+# Environment files (CONTIENEN CLAVES SECRETAS)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# =======================
+# ARCHIVOS DE BUILD Y COMPILACIÓN
+# =======================
+
+# Frontend build
+dist/
+build/
+.vite/
+.next/
+out/
+
+# Backend cache
+bootstrap/cache/
+storage/app/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+storage/logs/
+
+# =======================
+# BASES DE DATOS LOCALES
+# =======================
+
+# SQLite databases
+*.sqlite
+*.sqlite3
+database/database.sqlite
+
+# =======================
+# ARCHIVOS DE TESTING Y COBERTURA
+# =======================
+
+# Coverage reports
+coverage/
+coverage-html/
+.nyc_output/
+lcov.info
+clover.xml
+coverage.xml
+coverage.txt
+
+# Jest
+jest_coverage/
+
+# =======================
+# ARCHIVOS DEL SISTEMA OPERATIVO
+# =======================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# =======================
+# ARCHIVOS DE EDITORES E IDEs
+# =======================
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains IDEs
+.idea/
+*.swp
+*.swo
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# =======================
+# ARCHIVOS TEMPORALES
+# =======================
+
+# Logs
+*.log
+logs/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Temporary folders
+tmp/
+temp/
+
+# =======================
+# DOCKER Y CONTENEDORES
+# =======================
+
+# Docker
+.dockerignore
+
+# =======================
+# ARCHIVOS ESPECÍFICOS DEL PROYECTO
+# =======================
+
+# Archivos de configuración local
+.babelrc
+jest.config.js
+jest.config.cjs
+
+# Archivos de TypeScript compilados
+*.tsbuildinfo
+
+# =======================
+# ARCHIVOS QUE SÍ DEBEN INCLUIRSE
+# =======================
+
+# Mantener estos archivos importantes:
+!.env.example
+!.gitignore
+!.gitmessage
+!README.md
+!CHANGELOG.md
+!package.json
+!composer.json
